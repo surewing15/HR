@@ -8,6 +8,6 @@ class OtherController extends Controller
 {
     public function coe()
     {
-        return view('pages.others.coe');
+        return view('admin.others.coe');
     }
 }

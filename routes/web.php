@@ -7,6 +7,7 @@ use App\Http\Controllers\AddEmployeeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\OtherController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,7 +23,7 @@ Route::middleware([
     })->name('dashboard');
 });
 route::get('/home', [AdminController::class, 'index']);
-
+Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
 
 Route::get('/addemployees', [AddEmployeeController::class, 'index'])->name('employee.index');

@@ -13,7 +13,7 @@ class StaffController extends Controller
             $query->where('depart_name', 'Job Order');
         })->with('department')->get();
 
-        return view('pages.staff.job', compact('employees'));
+        return view('admin.staff.job', compact('employees'));
     }
     public function permanent()
     {
@@ -21,6 +21,6 @@ class StaffController extends Controller
             $query->where('depart_name', 'Permanent');
         })->with('department')->get();
 
-        return view('pages.staff.permanent', compact('employees'));
+        return view('admin.staff.permanent', compact('employees'));
     }
 }
