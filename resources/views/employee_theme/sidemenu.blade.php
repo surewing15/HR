@@ -36,7 +36,7 @@
 
 
                     <li class="nk-menu-item has-sub">
-                        <a href="/employee_theme/pds_form" class="nk-menu-link">
+                        <a href="pds_form" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-card-view"> </em></span>
                             <span class="nk-menu-text">PDS Form</span>
                         </a>
@@ -44,7 +44,7 @@
                     </li>
 
                     <li class="nk-menu-item">
-                        <a href="" class="nk-menu-link">
+                        <a href="files" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-files-fill"></em></span>
                             <span class="nk-menu-text">Files</span>
                         </a>

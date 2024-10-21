@@ -16,8 +16,8 @@ class AdminController extends Controller
 
             if ($user_type == 'admin') {
                 return view('admin.index');
-            } else if ($user_type == 'user') {
-                return view('employee.index');
+            } else if ($user_type == 'employee') {
+                return view('user.index');
             } else {
                 return redirect('/')->with('error', 'Unauthorized access');
             }

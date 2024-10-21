@@ -8,6 +8,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\OtherController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,12 +18,17 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
+
+
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 });
-route::get('/home', [AdminController::class, 'index']);
+
+route::get('/dashboard', [AdminController::class, 'index']);
+
+
 Route::get('/admin/dashboard', [DashboardController::class, 'index']);
 
 
@@ -33,9 +39,9 @@ Route::post('/employees/save', [AddEmployeeController::class, 'save'])->name('em
 
 Route::get('/departments/register', [DepartmentController::class, 'registration'])->name('departments.register');
 
-// Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-
-
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
 Route::get('/departments/academic', [DepartmentController::class, 'academic'])->name('departments.academic');
@@ -61,3 +67,20 @@ Route::get('/staff/job', [StaffController::class, 'job'])->name('staff.job');
 Route::get('/staff/permanent', [StaffController::class, 'permanent'])->name('staff.permanent');
 
 Route::get('/others/coe', [OtherController::class, 'coe'])->name(name: 'others.coe');
+
+
+Route::get('pds_form', function () {
+    return view('employee.pds.index');
+})->name('eemployee.pds.index');
+
+Route::get('/employee_theme/request/index', function () {
+    return view('employee_theme.request.index');
+})->name('employee.request');
+
+Route::get('files/', function () {
+    return view('employee.files.index');
+})->name('employee.files');
+
+Route::get('/dashboard_emp', function () {
+    return view('.employee.dashboard.index');
+})->middleware(['auth', 'verified'])->name('dashboard_emp');
