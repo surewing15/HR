@@ -17,3 +17,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });route::get('/home',[AdminController::class,'index']);
+
+
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

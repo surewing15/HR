@@ -11,24 +11,17 @@ class AdminController extends Controller
 {
     public function index()
     {
-        if (Auth::check())
-        {
+        if (Auth::check()) {
             $user_type = Auth::user()->usertype;
 
             if ($user_type == 'admin') {
                 return view('admin.index');
-            }
-            else if ($user_type == 'user') {
-                return view('user.index');
-            }
-            else if ($user_type == 'clerk') {
-                return view('clerk.index');
-            }
-            else {
+            } else if ($user_type == 'user') {
+                return view('employee.index');
+            } else {
                 return redirect('/')->with('error', 'Unauthorized access');
             }
-        }
-        else {
+        } else {
             return redirect('/login')->with('error', 'Please log in first');
         }
     }
