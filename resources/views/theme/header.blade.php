@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="/images/favicon.png">
     <title>TCC HR ADMIN</title>
     <link rel="stylesheet" href="/assets/css/dashlite.css?ver=3.0.3">
-    <link id="skin-default" rel="stylesheet" href="./assets/css/theme.css?ver=3.0.3">
+    <link id="skin-default" rel="stylesheet" href="/assets/css/theme.css?ver=3.0.3">
     <style>
         .is-light .nk-menu-link:hover,
         .is-light .active>.nk-menu-link {

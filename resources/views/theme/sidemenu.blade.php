@@ -27,7 +27,7 @@
                         <h6 class="overline-title text-primary-alt">menu</h6>
                     </li>
                     <li class="nk-menu-item">
-                        <a href="/dashboard"class="nk-menu-link">
+                        <a href="/admin/dashboard"class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
                             <span class="nk-menu-text">Dashboard</span>
                         </a>
@@ -81,7 +81,8 @@
                                         class="nk-menu-text">Engineering Technology</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="/departments/artsci" class="nk-menu-link"><span class="nk-menu-text">Arts and
+                                <a href="/departments/artsci" class="nk-menu-link"><span class="nk-menu-text">Arts
+                                        and
                                         Science</span></a>
                             </li>
                             <li class="nk-menu-item">
