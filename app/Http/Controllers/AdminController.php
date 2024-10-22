@@ -11,7 +11,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        if (Auth::check()) {
+        if (Auth::CheckAdmin()) {
             $user_type = Auth::user()->usertype;
 
             if ($user_type == 'admin') {
