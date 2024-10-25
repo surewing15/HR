@@ -118,36 +118,37 @@
             /* Print-specific styles */
             @media print {
                 @page {
-                    size: A4;
-                    print-color-adjust: exact;
+                    size: Legal;
                     margin: 0;
-                    padding: 0;
-
                 }
 
                 body {
-                    -webkit-print-color-adjust: exact;
-                    print-color-adjust: exact;
                     margin: 0;
                     padding: 0;
+                    -webkit-print-color-adjust: exact;
+                    print-color-adjust: exact;
+                }
+
+                body * {
+                    visibility: hidden;
+                }
+
+                .container,
+                .container * {
+                    visibility: visible;
                 }
 
                 .container {
+                    position: absolute;
+                    top: 0;
+                    left: 10%;
                     width: 100%;
                     height: auto;
-                    padding: 20px;
-                    box-shadow: none;
-                    border: none;
                     background-image: url('/assets/images/lgu.png');
                     background-size: cover;
-                }
-
-                .header img {
-                    display: block;
-                    margin-left: auto;
-                    margin-right: auto;
-                    width: 100px;
-                    /* Adjust size as needed */
+                    padding: 0px;
+                    box-shadow: none;
+                    border: none;
                 }
 
                 .print-button {
