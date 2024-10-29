@@ -9,6 +9,9 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\OtherController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\UserController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,6 +47,16 @@ Route::middleware([
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// dsds
+// Route for displaying the index page
+Route::get('/pds_form', [UserController::class, 'index'])->name('index');
+
+// Route for importing data
+Route::post('/import', [UserController::class, 'import'])->name('import');
+
+// Route for exporting data
+Route::get('/export', [UserController::class, 'export'])->name('export');
+
 Route::get('/departments/academic', [DepartmentController::class, 'academic'])->name('departments.academic');
 Route::get('/departments/artsci', [DepartmentController::class, 'artsci'])->name('departments.artsci');
 Route::get('/departments/businessad', [DepartmentController::class, 'businessad'])->name('departments.businessad');
@@ -70,9 +83,9 @@ Route::get('/staff/permanent', [StaffController::class, 'permanent'])->name('sta
 Route::get('/others/coe', [OtherController::class, 'coe'])->name(name: 'others.coe');
 
 
-Route::get('pds_form', function () {
-    return view('employee.pds.index');
-})->name('eemployee.pds.index');
+// Route::get('pds_form', function () {
+//     return view('employee.pds.index');
+// })->name('eemployee.pds.index');
 
 Route::get('/employee_theme/request/index', function () {
     return view('employee_theme.request.index');
@@ -90,9 +103,9 @@ Route::get('/designation', function () {
     return view('admin.addemployees.desicategory');
 })->name('admin.addemployees.desicategory');
 
-Route::get('/pds_form', function () {
-    return view('employee_theme.pds.index');
-})->name('employee.pds');
+// Route::get('/pds_form', function () {
+//     return view('employee_theme.pds.index');
+// })->name('employee.pds');
 
 // Employee request Form Route
 Route::get('/files', function () {
@@ -108,6 +121,9 @@ Route::get('/emp', function () {
     return view('.employee.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard_emp');
 
+
+Route::get('/employee/upload', [EmployeeController::class, 'showUploadForm'])->name('employee.upload');
+Route::post('/employee/import', [EmployeeController::class, 'import'])->name('employee.import');
 
 
 
