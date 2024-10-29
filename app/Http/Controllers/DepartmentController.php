@@ -122,4 +122,5 @@ class DepartmentController extends Controller
         return redirect()->back()->with('success', 'Department registered successfully!');
     }
 
+
 }

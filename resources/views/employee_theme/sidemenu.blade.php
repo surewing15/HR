@@ -28,7 +28,7 @@
 
                     </li>
                     <li class="nk-menu-item">
-                        <a href="{{ route('dashboard_emp') }}" class="nk-menu-link">
+                        <a href="/emp" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
                             <span class="nk-menu-text">Dashboard</span>
                         </a>
@@ -36,7 +36,7 @@
 
 
                     <li class="nk-menu-item has-sub">
-                        <a href="pds_form" class="nk-menu-link">
+                        <a href="/pds_form" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-card-view"> </em></span>
                             <span class="nk-menu-text">PDS Form</span>
                         </a>
@@ -44,10 +44,18 @@
                     </li>
 
                     <li class="nk-menu-item">
-                        <a href="files" class="nk-menu-link">
+                        <a href="/files" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-files-fill"></em></span>
                             <span class="nk-menu-text">Files</span>
                         </a>
+                    </li>
+
+                    <li class="nk-menu-item has-sub">
+                        <a href="/request/coe" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-file-text"></em></span>
+                            <span class="nk-menu-text">Request COE</span>
+                        </a>
+
                     </li>
 
                 </ul>

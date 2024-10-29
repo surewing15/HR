@@ -13,11 +13,11 @@
                     window.location.href = data;
                 },
                 error: function(err) {
-                   alert(err);
+                    alert(err);
                 }
             });
         } else {
-          
+
         }
     }
 </script>
@@ -25,8 +25,9 @@
     <div class="container-fluid">
         <div class="nk-footer-wrap">
             -
-            <div class="nk-footer-copyright"> &copy; 2024 <a href="https://tcc.edu.ph/" target="_blank" style="color: #c38522">Tagoloan Community College Employee</a> All Rights Reserved.</div>
-            
+            <div class="nk-footer-copyright"> &copy; 2024 <a href="https://tcc.edu.ph/" target="_blank"
+                    style="color: #c38522">Tagoloan Community College Employee</a> All Rights Reserved.</div>
+
         </div>
     </div>
 </div>

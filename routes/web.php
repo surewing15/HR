@@ -60,6 +60,7 @@ Route::get('/departments/hm', [DepartmentController::class, 'hm'])->name('depart
 
 Route::get('/department/register', [DepartmentController::class, 'create'])->name('department.create');
 Route::post('/department/register', [DepartmentController::class, 'store'])->name('department.store');
+Route::get('/departments/filter', [AddEmployeeController::class, 'filterDepartments'])->name('departments.filter');
 
 
 
@@ -81,6 +82,34 @@ Route::get('files/', function () {
     return view('employee.files.index');
 })->name('employee.files');
 
-Route::get('/dashboard_emp', function () {
+Route::get('/departments', function () {
+    return view('admin.addemployees.deptcategory');
+})->name('admin.addemployees.deptcategory');
+
+Route::get('/designation', function () {
+    return view('admin.addemployees.desicategory');
+})->name('admin.addemployees.desicategory');
+
+Route::get('/pds_form', function () {
+    return view('employee_theme.pds.index');
+})->name('employee.pds');
+
+// Employee request Form Route
+Route::get('/files', function () {
+    return view('employee_theme.files.index');
+})->name('employee.request');
+
+// Employee file Route
+Route::get('/request/coe', function () {
+    return view('employee_theme.request.index');
+})->name('employee.files');
+
+Route::get('/emp', function () {
     return view('.employee.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard_emp');
+
+
+
+
+// Authentication Routes
+// require __DIR__ . '/auth.php';

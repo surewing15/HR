@@ -34,13 +34,12 @@
                             </thead>
                             <tbody>
                                 @foreach ($addemployees as $key => $employee)
-                                    <tr style="cursor: pointer">
+                                    <tr style="cursor: pointer" data-role="{{ $employee->role }}">
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $employee->emp_first_name }} {{ $employee->emp_last_name }}</td>
                                         <td>{{ $employee->emp_phone_number }}</td>
                                         <td>{{ $employee->emp_email }}</td>
                                         <td>{{ $employee->department->depart_name ?? 'No Department' }}</td>
-
                                         <td>
                                             <button class="btn btn-sm btn-block btn-light bg-white text-dark">
                                                 <em class="icon ni ni-edit"></em>
@@ -49,8 +48,8 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-
                         </table>
+
 
                     </div>
                 </div>
@@ -168,7 +167,7 @@
                         <div class="row mt-2 align-center">
                             <div class="col-lg-5">
                                 <div class="form-group">
-                                    <label class="form-label" for="inp_role">Role <b class="text-danger">*</b></label>
+                                    <label class="form-label" for="role">Role <b class="text-danger">*</b></label>
                                     <span class="form-note">Select a role here.</span>
                                 </div>
                             </div>
@@ -177,17 +176,45 @@
                                     <div class="form-icon form-icon-right">
                                         <em class="icon ni ni-user"></em>
                                     </div>
-                                    <select class="form-control" id="department_id" name="department_id" required>
-                                        <option value="">Select Position</option>
-                                        @foreach ($departments as $department)
-                                            <option value="{{ $department->department_id }}">
-                                                {{ $department->depart_name }}</option>
-                                        @endforeach
+                                    <select class="form-control" id="role" name="role" required
+                                        onchange="filterPositionOptions()">
+                                        <option value="">Select role</option>
+                                        <option value="staff">Staff</option>
+                                        <option value="faculty">Faculty</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Position -->
+                        <div class="row mt-2 align-center">
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label class="form-label" for="position">Position <b
+                                            class="text-danger">*</b></label>
+                                    <span class="form-note">Select a Position here.</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="form-control-wrap">
+                                    <div class="form-icon form-icon-right">
+                                        <em class="icon ni ni-user"></em>
+                                    </div>
+                                    <select class="form-control" id="position" name="department_id" required>
+
+                                        <option value="">Select Position</option>
+                                        @foreach ($staffDepartments as $staff)
+                                            <option value="{{ $staff->department_id }}" class="staff-option">
+                                                {{ $staff->depart_name }}</option>
+                                        @endforeach
+                                        @foreach ($facultyDepartments as $faculty)
+                                            <option value="{{ $faculty->department_id }}" class="faculty-option">
+                                                {{ $faculty->depart_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- Submit Button -->
                         <div class="row mt-4">
@@ -200,8 +227,24 @@
                             </div>
                         </div>
                     </form>
+
+                    <script>
+                        function filterPositionOptions() {
+                            const role = document.getElementById("role").value;
+                            const staffOptions = document.querySelectorAll(".staff-option");
+                            const facultyOptions = document.querySelectorAll(".faculty-option");
+
+                            if (role === "staff") {
+                                staffOptions.forEach(option => option.style.display = "block");
+                                facultyOptions.forEach(option => option.style.display = "none");
+                            } else if (role === "faculty") {
+                                staffOptions.forEach(option => option.style.display = "none");
+                                facultyOptions.forEach(option => option.style.display = "block");
+                            } else {
+                                staffOptions.forEach(option => option.style.display = "none");
+                                facultyOptions.forEach(option => option.style.display = "none");
+                            }
+                        }
+                    </script>
                 </div>
-            </div>
-        </div>
-    </div>
-@endsection
+            @endsection
