@@ -4,9 +4,9 @@
     <div class="nk-block nk-block-lg">
         <div class="nk-block-head">
             <div class="nk-block-head-content">
-                <h4 class="nk-block-title">Permanent Employee</h4>
+                <h4 class="nk-block-title">Department of Information Technology</h4>
                 <div class="nk-block-des">
-                    <p>List of employees in the Permanent.</p>
+                    <p>List of employees in the College of Information Technology.</p>
                 </div>
             </div>
         </div>
@@ -23,14 +23,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($employees as $employee)
-                            <tr class="nk-tb-item">
-                                <td class="nk-tb-col">{{ $employee->emp_first_name }}</td>
-                                <td class="nk-tb-col">{{ $employee->emp_last_name }}</td>
-                                <td class="nk-tb-col">{{ $employee->emp_email }}</td>
-                                <td class="nk-tb-col">{{ $employee->emp_phone_number }}</td>
-                                <td class="nk-tb-col">{{ $employee->department->depart_name }}</td>
-                            </tr>
+                        @foreach($employees as $employee)
+                        <tr class="nk-tb-item">
+                            <td class="nk-tb-col">{{ $employee->emp_first_name }}</td>
+                            <td class="nk-tb-col">{{ $employee->emp_last_name }}</td>
+                            <td class="nk-tb-col">{{ $employee->emp_email }}</td>
+                            <td class="nk-tb-col">{{ $employee->emp_phone_number }}</td>
+                            <td class="nk-tb-col">{{ $employee->department->depart_name }}</td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>

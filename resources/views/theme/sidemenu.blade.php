@@ -50,15 +50,37 @@
                     <li class="nk-menu-heading pt-0">
                         <h6 class="overline-title text-primary-alt">EMPLOYEE MANAGE</h6>
                     </li>
-                    <li class="nk-menu-item">
-                        <a href="/departments" class="nk-menu-link">
+
+                    <li class="nk-menu-item has-sub">
+                        <a href="/masterlist" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-list"></em></span>
+                            <span class="nk-menu-text" class="icon ni ni-tile-thumb-fill">Masterlist</span>
+                        </a>
+                    </li>
+                    
+
+
+                    <li class="nk-menu-item has-sub">
+                        <a href="#" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-building"></em></span>
                             <span class="nk-menu-text">Faculty</span>
                         </a>
-
+                        <ul class="nk-menu-sub">
+                            <li class="nk-menu-item">
+                                <a href="/faculty" class="nk-menu-link">
+                                    <span class="nk-menu-text">List</span>
+                                </a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="/ranks" class="nk-menu-link">
+                                    <span class="nk-menu-text">Ranks</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+
                     <li class="nk-menu-item">
-                        <a href="/designation" class="nk-menu-link">
+                        <a href="/staff" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-archive"></em></span>
                             <span class="nk-menu-text">Staff</span>
                         </a>
@@ -78,10 +100,18 @@
 
                     <li class="nk-menu-item">
                         <a href="/request" class="nk-menu-link">
-                            <span class="nk-menu-icon"><em class="icon ni ni-task"></em></span>
+                            <span class="nk-menu-icon"><em class="icon ni ni-file"></em></span>
                             <span class="nk-menu-text">COE Request</span>
                         </a>
                     </li>
+
+                    <li class="nk-menu-item">
+                        <a href="/reports" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-report"></em></span>
+                            <span class="nk-menu-text">Reports</span>
+                        </a>
+                    </li>
+
 
                 </ul>
             </div>

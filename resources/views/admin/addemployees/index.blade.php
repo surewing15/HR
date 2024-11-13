@@ -21,14 +21,14 @@
                             </button>
 
                         </span>
-                        <table class="datatable-init table table-hover">
+                        <table class="datatable-init-export nowrap table" data-export-title="Export">
                             <thead>
                                 <tr>
                                     <th width="20">#</th>
                                     <th>Employee Name</th>
                                     <th>Phone Number</th>
                                     <th>Email Address</th>
-                                    <th>Position</th>
+                                    <th>Department/Designation</th>
                                     <th width="100" class="text-center">Action</th>
                                 </tr>
                             </thead>

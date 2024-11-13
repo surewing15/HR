@@ -9,9 +9,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\OtherController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\ImportController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,17 +45,7 @@ Route::middleware([
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// dsds
-// Route for displaying the index page
-Route::get('/pds_form', [UserController::class, 'index'])->name('index');
 
-// Route for importing data
-Route::post('/import', [UserController::class, 'import'])->name('import');
-
-// Route for exporting data
-Route::get('/export', [UserController::class, 'export'])->name('export');
-
-Route::get('/departments/academic', [DepartmentController::class, 'academic'])->name('departments.academic');
 Route::get('/departments/artsci', [DepartmentController::class, 'artsci'])->name('departments.artsci');
 Route::get('/departments/businessad', [DepartmentController::class, 'businessad'])->name('departments.businessad');
 Route::get('/departments/criminal', [DepartmentController::class, 'criminal'])->name('departments.criminal');
@@ -65,11 +53,13 @@ Route::get('/departments/educ', [DepartmentController::class, 'educ'])->name('de
 Route::get('/departments/engtech', [DepartmentController::class, 'engtech'])->name('departments.engtech');
 Route::get('/departments/infotech', [DepartmentController::class, 'infotech'])->name('departments.infotech');
 Route::get('/departments/infotech', [DepartmentController::class, 'infotech']);
-
-
 Route::get('/departments/libraryinfo', [DepartmentController::class, 'libraryinfo'])->name('departments.libraryinfo');
 Route::get('/departments/medwif', [DepartmentController::class, 'medwif'])->name('departments.medwif');
 Route::get('/departments/hm', [DepartmentController::class, 'hm'])->name('departments.hm');
+
+Route::get('/architect', [DepartmentController::class, 'architect'])->name('designation.architect');
+
+
 
 Route::get('/department/register', [DepartmentController::class, 'create'])->name('department.create');
 Route::post('/department/register', [DepartmentController::class, 'store'])->name('department.store');
@@ -83,11 +73,11 @@ Route::get('/staff/permanent', [StaffController::class, 'permanent'])->name('sta
 Route::get('/others/coe', [OtherController::class, 'coe'])->name(name: 'others.coe');
 
 
-// Route::get('pds_form', function () {
-//     return view('employee.pds.index');
-// })->name('eemployee.pds.index');
+Route::get('pds_form', function () {
+    return view('employee.pds.index');
+})->name('eemployee.pds.index');
 
-Route::get('/employee_theme/request/index', function () {
+Route::get('/employee_theme/request', function () {
     return view('employee_theme.request.index');
 })->name('employee.request');
 
@@ -95,17 +85,38 @@ Route::get('files/', function () {
     return view('employee.files.index');
 })->name('employee.files');
 
-Route::get('/departments', function () {
-    return view('admin.addemployees.deptcategory');
-})->name('admin.addemployees.deptcategory');
 
-Route::get('/designation', function () {
-    return view('admin.addemployees.desicategory');
-})->name('admin.addemployees.desicategory');
 
-// Route::get('/pds_form', function () {
-//     return view('employee_theme.pds.index');
-// })->name('employee.pds');
+Route::get('/masterlist', function () {
+    return view('admin.masterlist.index');
+})->name('admin.masterlist.index');
+
+Route::get('/faculty', function () {
+    return view('admin.masterlist.faculty.index');
+})->name('admin.masterlist.faculty.index');
+
+Route::get('/staff', function () {
+    return view('admin.masterlist.staff.index');
+})->name('admin.masterlist.staff.index');
+
+Route::get('/reports', function () {
+    return view('admin.others.reports');
+})->name('admin.others.reports');
+
+Route::get('/ranks', function () {
+    return view('admin.ranks.index');
+})->name('admin.ranks.index');
+
+
+
+
+Route::get('/pds_form', function () {
+    return view('employee_theme.pds.index');
+})->name('employee.pds');
+
+Route::get('/request', function () {
+    return view('request.index');
+})->name('employee.request');
 
 // Employee request Form Route
 Route::get('/files', function () {
@@ -122,8 +133,15 @@ Route::get('/emp', function () {
 })->middleware(['auth', 'verified'])->name('dashboard_emp');
 
 
-Route::get('/employee/upload', [EmployeeController::class, 'showUploadForm'])->name('employee.upload');
-Route::post('/employee/import', [EmployeeController::class, 'import'])->name('employee.import');
+
+Route::get('/import', [ImportController::class, 'showImportForm'])->name('import.form');
+Route::post('/import', [ImportController::class, 'import'])->name('import');
+
+
+
+Route::get('/test', function () {
+    return view('test');
+})->name('test');
 
 
 

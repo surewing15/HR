@@ -91,13 +91,35 @@ class DepartmentController extends Controller
     }
     public function hm()
     {
-
         $employees = EmployeeModel::whereHas('department', function ($query) {
             $query->where('depart_name', 'College of Hospitality Management');
         })->with('department')->get();
 
         return view('admin.departments.hm', compact('employees'));
     }
+
+    public function architect()
+    {
+        $employees = EmployeeModel::whereHas('department', function ($query) {
+            $query->where('depart_name', 'ARCHITECT');
+        })->with('department')->get();
+
+        return view('designation.architect', compact('employees'));
+    }
+
+    public function driver()
+    {
+        $employees = EmployeeModel::whereHas('department', function ($query) {
+            $query->where('depart_name', 'DRIVER');
+        })->with('department')->get();
+
+        return view('designation.driver', compact('employees'));
+    }
+
+
+
+
+
     public function registration()
     {
         return view('admin.departments.register');
@@ -105,6 +127,7 @@ class DepartmentController extends Controller
     public function create()
     {
         return view('department.create');
+        
     }
 
 
