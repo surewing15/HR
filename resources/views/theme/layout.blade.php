@@ -3,6 +3,7 @@
 @include('theme.header')
 
 <body class="nk-body bg-lighter npc-general has-sidebar ">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="nk-app-root">
         <div class="nk-main ">
             @include('theme.sidemenu')
@@ -26,7 +27,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="/vendor/assets/js/example-sweetalert.js?ver=3.0.3"></script>
-    
+
     @if (session('success'))
         <script>
             Swal.fire({

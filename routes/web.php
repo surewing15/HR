@@ -10,6 +10,7 @@ use App\Http\Controllers\OtherController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ImportController;
+use App\Http\Controllers\EmployeeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -87,9 +88,7 @@ Route::get('files/', function () {
 
 
 
-Route::get('/masterlist', function () {
-    return view('admin.masterlist.index');
-})->name('admin.masterlist.index');
+
 
 Route::get('/faculty', function () {
     return view('admin.masterlist.faculty.index');
@@ -144,6 +143,19 @@ Route::get('/test', function () {
 })->name('test');
 
 
+
+
+Route::prefix('masterlist')->group(function () {
+    Route::get('/', [EmployeeController::class, 'index'])->name('masterlist.index');
+    Route::post('/', [EmployeeController::class, 'store'])->name('masterlist.store');
+    Route::get('/{id}/edit', [EmployeeController::class, 'edit'])->name('masterlist.edit');
+    Route::post('/{id}/update', [EmployeeController::class, 'update'])->name('masterlist.update'); // Changed to POST
+    Route::get('/{id}/delete', [EmployeeController::class, 'destroy'])->name('masterlist.destroy'); // Changed to GET for simplicity
+    Route::post('/import', [EmployeeController::class, 'import'])->name('employees.import');
+});
+// Route::get('/masterlist', [EmployeeController::class, 'index'])->name('admin.masterlist.index');
+
+Route::post('/employees/import', [EmployeeController::class, 'import'])->name('employees.import');
 
 // Authentication Routes
 // require __DIR__ . '/auth.php';
