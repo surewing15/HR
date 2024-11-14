@@ -131,7 +131,9 @@ Route::get('/emp', function () {
     return view('.employee.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard_emp');
 
-
+Route::get('/request', function () {
+    return view('admin.others.request');
+})->name('admin.others.request');
 
 Route::get('/import', [ImportController::class, 'showImportForm'])->name('import.form');
 Route::post('/import', [ImportController::class, 'import'])->name('import');
