@@ -29,6 +29,7 @@ class EmployeesImport implements ToModel, WithHeadingRow
             'position_title' => $row['position_title'],
             'contact_number' => $row['contact_number'],
             'educational_attainment' => $row['educational_attainment'],
+            'department' => $row['department'],
             'salary' => $row['salary'],
             'email' => $row['email'],
             'work_status' => $row['work_status'],

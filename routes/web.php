@@ -11,6 +11,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\RankController;
+use App\Http\Controllers\RequestController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -74,6 +78,7 @@ Route::get('/staff/permanent', [StaffController::class, 'permanent'])->name('sta
 Route::get('/others/coe', [OtherController::class, 'coe'])->name(name: 'others.coe');
 
 
+
 Route::get('pds_form', function () {
     return view('employee.pds.index');
 })->name('eemployee.pds.index');
@@ -90,9 +95,15 @@ Route::get('files/', function () {
 
 
 
-Route::get('/faculty', function () {
-    return view('admin.masterlist.faculty.index');
-})->name('admin.masterlist.faculty.index');
+Route::prefix('faculty')->name('faculty.')->group(function () {
+    Route::get('/', [FacultyController::class, 'index'])->name('index');
+    Route::get('/create', [FacultyController::class, 'create'])->name('create');
+    Route::post('/', [FacultyController::class, 'store'])->name('store');
+    Route::get('/{id}', [FacultyController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [FacultyController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [FacultyController::class, 'update'])->name('update');
+    Route::delete('/{id}', [FacultyController::class, 'destroy'])->name('destroy');
+});
 
 Route::get('/staff', function () {
     return view('admin.masterlist.staff.index');
@@ -102,10 +113,6 @@ Route::get('/reports', function () {
     return view('admin.others.reports');
 })->name('admin.others.reports');
 
-Route::get('/ranks', function () {
-    return view('admin.ranks.index');
-})->name('admin.ranks.index');
-
 
 
 
@@ -113,9 +120,10 @@ Route::get('/pds_form', function () {
     return view('employee_theme.pds.index');
 })->name('employee.pds');
 
-Route::get('/request', function () {
-    return view('request.index');
-})->name('employee.request');
+// Route::get('/request', function () {
+//     return view('request.index');
+// })->name('employee.request');
+
 
 // Employee request Form Route
 Route::get('/files', function () {
@@ -123,17 +131,26 @@ Route::get('/files', function () {
 })->name('employee.request');
 
 // Employee file Route
-Route::get('/request/coe', function () {
-    return view('employee_theme.request.index');
-})->name('employee.files');
+
+
+
+
+Route::get('/request/coe', [RequestController::class, 'index'])->name('coe.index');
+
+Route::post('/request-certificate', [RequestController::class, 'store'])->name('request.store');
+
 
 Route::get('/emp', function () {
     return view('.employee.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard_emp');
 
-Route::get('/request', function () {
-    return view('admin.others.request');
-})->name('admin.others.request');
+
+//request in admin
+Route::get('/request', [OtherController::class, 'coe_request']);
+
+
+
+
 
 Route::get('/import', [ImportController::class, 'showImportForm'])->name('import.form');
 Route::post('/import', [ImportController::class, 'import'])->name('import');
@@ -159,5 +176,17 @@ Route::prefix('masterlist')->group(function () {
 
 Route::post('/employees/import', [EmployeeController::class, 'import'])->name('employees.import');
 
+
+Route::post('/rank/update', [RankController::class, 'update'])->name('rank.update');
+// Add this route in web.php
+Route::get('/search', [RankController::class, 'searchUpdate']);
+
+Route::get('/search-employees', [RankController::class, 'search'])->name('employees.search');
+Route::get('/search-masterlist', [RankController::class, 'searchMasterlist'])->name('masterlist.search');
+Route::post('/employee/save', [RankController::class, 'save'])->name('employee.save');
+Route::get('/ranks', [RankController::class, 'index']);
+
+Route::get('/search', [RankController::class, 'search'])->name('rank.search');
+Route::get('/search', [RankController::class, 'search'])->name('search');
 // Authentication Routes
 // require __DIR__ . '/auth.php';

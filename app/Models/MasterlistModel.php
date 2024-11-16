@@ -22,9 +22,10 @@ class MasterlistModel extends Model
         'position_title',
         'contact_number',
         'educational_attainment',
+        'department',
         'salary',
         'email',
         'work_status',
-        'job_type',
+        'job_type'
     ];
 }

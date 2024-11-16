@@ -29,6 +29,7 @@ class EmployeeController extends Controller
                 'position_title' => 'required|string|max:255',
                 'contact_number' => 'required|string|max:20',
                 'educational_attainment' => 'required|max:255',
+                'department' => 'required|max:255',
                 'salary' => 'required|numeric|min:0',
                 'email' => 'required|email|max:255',
                 'work_status' => 'required|in:job_order,permanent'

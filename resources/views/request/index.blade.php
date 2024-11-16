@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-inner">
-                       
+
                         <table class="datatable-init table table-hover">
                             <thead>
                                 <tr>
@@ -28,7 +28,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
+
                                     <tr style="cursor: pointer">
                                         <td></td>
                                         <td></td>
@@ -43,13 +43,13 @@
                                                     <ul class="link-list-plain">
                                                         <li><a href="#">Accept</a></li>
                                                         <li><a href="#">Decline</a></li>
-                                                        
+
                                                     </ul>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-                                
+
                             </tbody>
 
                         </table>
