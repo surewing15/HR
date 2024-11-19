@@ -3,24 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\EmployeeModel;
+use App\Models\MasterlistModel;
 
 class StaffController extends Controller
 {
-    public function job()
+    public function index()
     {
-        $employees = EmployeeModel::whereHas('department', function ($query) {
-            $query->where('depart_name', 'Job Order');
-        })->with('department')->get();
+        // Retrieve only faculty members (job_type = 'faculty')
+        $faculty = MasterlistModel::where('job_type', 'staff')->get();
 
-        return view('admin.staff.job', compact('employees'));
+        // Pass the filtered data to the view
+        return view('admin.masterlist.faculty.index', compact('faculty'));
     }
-    public function permanent()
-    {
-        $employees = EmployeeModel::whereHas('department', function ($query) {
-            $query->where('depart_name', 'Permanent');
-        })->with('department')->get();
+    // public function permanent()
+    // {
+    //     $employees = EmployeeModel::whereHas('department', function ($query) {
+    //         $query->where('depart_name', 'Permanent');
+    //     })->with('department')->get();
 
-        return view('admin.staff.permanent', compact('employees'));
-    }
+    //     return view('admin.staff.permanent', compact('employees'));
+    // }
 }

@@ -57,7 +57,7 @@
                             <span class="nk-menu-text" class="icon ni ni-tile-thumb-fill">Masterlist</span>
                         </a>
                     </li>
-                    
+
 
 
                     <li class="nk-menu-item has-sub">

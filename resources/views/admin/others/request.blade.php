@@ -254,14 +254,14 @@
                     monthlyCompensationText;
                 document.querySelector('.modal .highlight:nth-of-type(5)').textContent =
                     `Php ${Number(monthlyCompensationDigits).toFixed(2)}`;
-                /
+
 
                 document.querySelector(".modal-overlay").style.display = "block";
                 document.querySelector(".modal").style.display = "block";
             }
 
             function closeModal() {
-                /
+
                 document.querySelector(".modal-overlay").style.display = "none";
                 document.querySelector(".modal").style.display = "none";
             }

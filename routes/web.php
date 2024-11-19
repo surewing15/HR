@@ -72,7 +72,7 @@ Route::get('/departments/filter', [AddEmployeeController::class, 'filterDepartme
 
 
 
-Route::get('/staff/job', [StaffController::class, 'job'])->name('staff.job');
+Route::get('/staff', [StaffController::class, 'index'])->name('staff.job');
 Route::get('/staff/permanent', [StaffController::class, 'permanent'])->name('staff.permanent');
 
 Route::get('/others/coe', [OtherController::class, 'coe'])->name(name: 'others.coe');
@@ -105,9 +105,6 @@ Route::prefix('faculty')->name('faculty.')->group(function () {
     Route::delete('/{id}', [FacultyController::class, 'destroy'])->name('destroy');
 });
 
-Route::get('/staff', function () {
-    return view('admin.masterlist.staff.index');
-})->name('admin.masterlist.staff.index');
 
 Route::get('/reports', function () {
     return view('admin.others.reports');

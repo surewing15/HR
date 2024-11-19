@@ -22,7 +22,7 @@
     </div>
 
     <script src="/assets/js/bundle.js?ver=3.0.3"></script>
-
+    <script src="/assets/js/scripts.js?ver=3.0.3"></script>
     <script src="/assets/js/charts/chart-ecommerce.js?ver=3.0.3"></script>
     <script src="/assets/js/charts/chart-lms.js?ver=3.0.3"></script>
     <script src="/assets/js/libs/datatable-btns.js?ver=3.0.3"></script>
