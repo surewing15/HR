@@ -52,17 +52,12 @@
                                 <th class="nk-tb-col"><span class="sub-text">#</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Full Name</span></th>
                                 <!-- Changed from First Name to Full Name -->
-                                <th class="nk-tb-col"><span class="sub-text">Gender</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Status</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Birthdate</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Position Title</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Contact Number</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Educational Attainment</span></th>
+                                <th class="nk-tb-col"><span class="sub-text">Middle</span></th>
+                                <th class="nk-tb-col"><span class="sub-text">Contact Info</span></th>
+                                <th class="nk-tb-col"><span class="sub-text">Employment Status</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Department</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Salary</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Email</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Work Status</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Action</span></th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -71,16 +66,11 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $employee->first_name }} {{ $employee->middle_name }} {{ $employee->last_name }}
                                     </td>
-                                    <td>{{ $employee->gender }}</td>
-                                    <td>{{ $employee->status }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($employee->birthdate)->format('m/d/Y') }}</td>
-                                    <td>{{ $employee->position_title }}</td>
-                                    <td>{{ $employee->contact_number }}</td>
-                                    <td>{{ $employee->educational_attainment }}</td>
+                                    <td>{{ $employee->middle_initial }}</td>
+                                    <td>{{ $employee->contact_information }}</td>
+                                    <td>{{ $employee->employment_status }}</td>
                                     <td>{{ $employee->department }}</td>
-                                    <td>{{ $employee->salary }}</td>
-                                    <td>{{ $employee->email }}</td>
-                                    <td>{{ $employee->work_status }}</td>
+
                                     <td>
                                         <button type="button" class="btn btn-primary"
                                             onclick="openEditModal({{ $employee->id }})">Edit</button>

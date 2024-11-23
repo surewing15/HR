@@ -20,24 +20,18 @@ class EmployeeController extends Controller
     {
         try {
             $validated = $request->validate([
-                'first_name' => 'required|string|max:255',
-                'last_name' => 'required|string|max:255',
-                'middle_name' => 'nullable|string|max:255',
-                'gender' => 'required|in:male,female',
-                'status' => 'required|in:single,married,separated,widowed,divorced',
-                'birthdate' => 'required|date',
-                'position_title' => 'required|string|max:255',
-                'contact_number' => 'required|string|max:20',
-                'educational_attainment' => 'required|max:255',
-                'department' => 'required|max:255',
-                'salary' => 'required|numeric|min:0',
-                'email' => 'required|email|max:255',
-                'work_status' => 'required|in:job_order,permanent'
+                'employee_id' => 'required|string|max:100',
+                'first_name' => 'required|string|max:100',
+                'last_name' => 'required|string|max:100',
+                'middle_initial' => 'nullable|string|max:1',
+                'contact_information' => 'required|string|max:100',
+                'employment_status' => 'required|string|max:50',
+                'job_title' => 'required|string|max:100',
+                'department' => 'required|string|max:100'
             ]);
 
             $employee = MasterlistModel::create($validated);
 
-            // For AJAX requests
             if ($request->ajax()) {
                 return response()->json([
                     'message' => 'Employee created successfully',
@@ -46,8 +40,8 @@ class EmployeeController extends Controller
                 ], 201);
             }
 
-            // For regular form submissions
-            return redirect()->route('masterlist.index')->with('success', 'Employee created successfully');
+            return redirect()->route('masterlist.index')
+                ->with('success', 'Employee created successfully');
 
         } catch (\Exception $e) {
             if ($request->ajax()) {

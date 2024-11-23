@@ -15,17 +15,11 @@ class MasterlistModel extends Model
     protected $fillable = [
         'first_name',
         'last_name',
-        'middle_name',
-        'gender',
-        'status',
-        'birthdate',
-        'position_title',
-        'contact_number',
-        'educational_attainment',
-        'department',
-        'salary',
-        'email',
-        'work_status',
-        'job_type'
+        'middle_initial',
+        'contact_information',
+        'employment_status',
+        'job_title',
+        'department'
+
     ];
 }
