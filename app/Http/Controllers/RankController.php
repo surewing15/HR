@@ -150,7 +150,7 @@ class RankController extends Controller
 
         $employees = MasterlistModel::where('first_name', 'LIKE', "%{$query}%")
             ->orWhere('last_name', 'LIKE', "%{$query}%")
-            ->select('id', 'first_name', 'last_name', 'middle_name', 'job_type', 'department')
+            ->select('id', 'first_name', 'last_name', 'job_type', 'department')
             ->limit(10)
             ->get();
 
