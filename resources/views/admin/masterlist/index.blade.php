@@ -58,6 +58,7 @@
                                 <th class="nk-tb-col"><span class="sub-text">Job Title</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Department</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Action</span></th>
+
                             </tr>
                         </thead>
                         <tbody>
