@@ -12,80 +12,89 @@
             <div class="page-header">
                 <div class="row">
                     <div class="col">
-                        <h3 class="page-title">Employee Faculty Rerankings</h3>
+                        <h3 class="page-title">Employee Faculty Update Ranks</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                             <li class="breadcrumb-item active">Employee Faculty Ranks</li>
                         </ul>
                     </div>
                     <div class="col-auto">
-                        <a href="#" class="btn btn-primary">PDF</a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateRankModal">
+                            Open Update Rank
+                        </button>
                     </div>
                 </div>
             </div>
             <!-- /Page Header -->
             <!-- Content Starts -->
 
-            <!-- Search Filter -->
-            <div class="row filter-row mb-4">
+            
+        
 
+
+<!-- Modal -->
+<div class="modal fade" id="updateRankModal" tabindex="-1" aria-labelledby="updateRankModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateRankModalLabel">Update Employee Rank</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
                 <form action="{{ route('rank.update') }}" method="POST">
                     @csrf
 
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input type="text" id="r_emp" name="r_emp" class="form-control floating"
-                                autocomplete="off">
-                            <label class="focus-label">Employee</label>
-                            <ul id="r_emp_results" class="position-absolute w-100 list-unstyled shadow bg-white"
-                                style="z-index: 1000; display: none;"></ul>
-                        </div>
+                    <!-- Employee Input -->
+                    <div class="mb-3">
+                        <label for="r_emp" class="form-label">Employee</label>
+                        <input type="text" id="r_emp" name="r_emp" class="form-control" autocomplete="off">
+                        <ul id="r_emp_results" class="position-absolute w-100 list-unstyled shadow bg-white"
+                            style="z-index: 1000; display: none;"></ul>
                     </div>
 
-                    @csrf
                     <!-- Update Field Input -->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input class="form-control floating" type="text" id="updateField" name="updated_field"
-                                placeholder="Enter Update Field">
-                            <label class="focus-label">Update Field</label>
-                        </div>
+                    <div class="mb-3">
+                        <label for="updateField" class="form-label">Update Field</label>
+                        <input type="text" id="updateField" name="updated_field" class="form-control"
+                            placeholder="Enter Update Field">
                     </div>
 
                     <!-- Update Qualification Input -->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus">
-                            <input class="form-control floating" type="text" id="updateQualification" name="updated_qua"
-                                placeholder="Enter Update Qualification">
-                            <label class="focus-label">Update Qualification</label>
-                        </div>
+                    <div class="mb-3">
+                        <label for="updateQualification" class="form-label">Update Qualification</label>
+                        <input type="text" id="updateQualification" name="updated_qua" class="form-control"
+                            placeholder="Enter Update Qualification">
                     </div>
 
                     <!-- Rank Dropdown -->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="form-group form-focus select-focus">
-                            <select class="select floating" name="updated_rank">
-                                <option value="">Select Ranks</option>
-                                <option value="Instructor I">Instructor I</option>
-                                <option value="Instructor II">Instructor II</option>
-                                <option value="Instructor III">Instructor III</option>
-                                <option value="Assistant Professor I">Assistant Professor I</option>
-                                <option value="Assistant Professor II">Assistant Professor II</option>
-                                <option value="Assistant Professor III">Assistant Professor III</option>
-                                <option value="Assistant Professor IV">Assistant Professor IV</option>
-                            </select>
-                            <label class="focus-label">Ranks</label>
-                        </div>
+                    <div class="mb-3">
+                        <label for="updated_rank" class="form-label">Ranks</label>
+                        <select class="form-select" id="updated_rank" name="updated_rank">
+                            <option value="">Select Ranks</option>
+                            <option value="Instructor I">Instructor I</option>
+                            <option value="Instructor II">Instructor II</option>
+                            <option value="Instructor III">Instructor III</option>
+                            <option value="Assistant Professor I">Assistant Professor I</option>
+                            <option value="Assistant Professor II">Assistant Professor II</option>
+                            <option value="Assistant Professor III">Assistant Professor III</option>
+                            <option value="Assistant Professor IV">Assistant Professor IV</option>
+                        </select>
                     </div>
 
                     <!-- Submit Button -->
-                    <div class="col-sm-6 col-md-3">
-                        <button type="submit" class="btn btn-success btn-block">Update</button>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-success">Update</button>
                     </div>
                 </form>
-
             </div>
-            <!-- /Search Filter -->
+        </div>
+    </div>
+</div>
+
+
 
             <div class="row">
                 <div class="col-md-12">
@@ -103,14 +112,9 @@
         <div class="nk-block nk-block-lg">
             <div class="nk-block-head">
                 <div class="nk-block-head-content">
-                    <h4 class="nk-block-title">Data Table with Export</h4>
+                    <h4 class="nk-block-title"></h4>
                     <div class="nk-block-des">
-                        <p>To intialize datatable with export buttons, use <code
-                                class="code-class">.datatable-init-export</code> with <code>table</code> element. <br>
-                            <strong class="text-dark">Please Note</strong> By default export libraries is not added
-                            globally, so please include <code class="code-class">"js/libs/datatable-btns.js"</code> into
-                            your page to active export buttons.
-                        </p>
+                        
                     </div>
                 </div>
             </div>
