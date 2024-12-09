@@ -9,23 +9,25 @@ class MasterlistModel extends Model
 {
     use HasFactory;
 
-
     protected $table = 'masterlist';
 
+
     protected $fillable = [
-        'first_name',
+        'employee_id',
+        'full_name',
         'last_name',
-        'middle_name',
-        'gender',
-        'status',
-        'birthdate',
-        'position_title',
-        'contact_number',
-        'educational_attainment',
+        'first_name',
+        'middle_initial',
+        'contact_information',
+        'employment_status',
+        'job_title',
         'department',
-        'salary',
-        'email',
-        'work_status',
         'job_type'
     ];
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+
 }

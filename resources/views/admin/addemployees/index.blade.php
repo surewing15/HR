@@ -25,21 +25,23 @@
                             <thead>
                                 <tr>
                                     <th width="20">#</th>
+                                    <th>Employee's ID</th>
                                     <th>Employee Name</th>
-                                    <th>Phone Number</th>
                                     <th>Email Address</th>
+                                    <th>Job Title</th>
                                     <th>Department/Designation</th>
                                     <th width="100" class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($addemployees as $key => $employee)
-                                    <tr style="cursor: pointer" data-role="{{ $employee->role }}">
+                                @foreach ($masterlists as $key => $masterlist)
+                                    <tr style="cursor: pointer" data-role="{{ $masterlist->role }}">
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $employee->emp_first_name }} {{ $employee->emp_last_name }}</td>
-                                        <td>{{ $employee->emp_phone_number }}</td>
-                                        <td>{{ $employee->emp_email }}</td>
-                                        <td>{{ $employee->department->depart_name ?? 'No Department' }}</td>
+                                        <td>{{ $masterlist->employee_id }}</td>
+                                        <td>{{ $masterlist->full_name }}</td>
+                                        <td>{{ $masterlist->contact_information }}</td>
+                                        <td>{{ $masterlist->job_title }}</td>
+                                        <td>{{ $masterlist->department }}</td>
                                         <td>
                                             <button class="btn btn-sm btn-block btn-light bg-white text-dark">
                                                 <em class="icon ni ni-edit"></em>
@@ -85,23 +87,21 @@
                     @endif
 
                     {{-- Registration Form --}}
-                    <form action="{{ route('employee.save') }}" method="POST">
+                    <form action="{{ route('addemployees.save') }}" method="POST">
                         @csrf
                         <!-- First Name -->
                         <div class="row mt-2 align-center">
                             <div class="col-lg-5">
                                 <div class="form-group">
-                                    <label class="form-label" for="inp_fn">First Name <b class="text-danger">*</b></label>
+                                    <label class="form-label" for="first_name">First Name <b
+                                            class="text-danger">*</b></label>
                                     <span class="form-note">Specify the First Name here.</span>
                                 </div>
                             </div>
                             <div class="col-lg-7">
                                 <div class="form-control-wrap">
-                                    <div class="form-icon form-icon-right">
-                                        <em class="icon ni ni-info"></em>
-                                    </div>
-                                    <input type="text" class="form-control" id="inp_fn" name="inp_fn"
-                                        placeholder="Enter First Name here..." required value="{{ old('inp_fn') }}">
+                                    <input type="text" class="form-control" id="first_name" name="first_name"
+                                        placeholder="Enter First Name here..." required value="{{ old('first_name') }}">
                                 </div>
                             </div>
                         </div>
@@ -110,112 +110,130 @@
                         <div class="row mt-2 align-center">
                             <div class="col-lg-5">
                                 <div class="form-group">
-                                    <label class="form-label" for="inp_ln">Last Name <b class="text-danger">*</b></label>
+                                    <label class="form-label" for="last_name">Last Name <b class="text-danger">*</b></label>
                                     <span class="form-note">Specify the Last Name here.</span>
                                 </div>
                             </div>
                             <div class="col-lg-7">
                                 <div class="form-control-wrap">
-                                    <div class="form-icon form-icon-right">
-                                        <em class="icon ni ni-info"></em>
-                                    </div>
-                                    <input type="text" class="form-control" id="inp_ln" name="inp_ln"
-                                        placeholder="Enter Last Name here..." required value="{{ old('inp_ln') }}">
+                                    <input type="text" class="form-control" id="last_name" name="last_name"
+                                        placeholder="Enter Last Name here..." required value="{{ old('last_name') }}">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Email -->
+                        <!-- Middle Initial -->
                         <div class="row mt-2 align-center">
                             <div class="col-lg-5">
                                 <div class="form-group">
-                                    <label class="form-label" for="inp_email">Email <b class="text-danger">*</b></label>
-                                    <span class="form-note">Specify the email address here.</span>
+                                    <label class="form-label" for="middle_initial">Middle Initial</label>
+                                    <span class="form-note">Specify the Middle Initial here.</span>
                                 </div>
                             </div>
                             <div class="col-lg-7">
                                 <div class="form-control-wrap">
-                                    <div class="form-icon form-icon-right">
-                                        <em class="icon ni ni-mail"></em>
-                                    </div>
-                                    <input type="email" class="form-control" id="inp_email" name="inp_email"
-                                        placeholder="Enter Email here..." required value="{{ old('inp_email') }}">
+                                    <input type="text" class="form-control" id="middle_initial" name="middle_initial"
+                                        placeholder="Enter Middle Initial here..." maxlength="1"
+                                        value="{{ old('middle_initial') }}">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Phone Number -->
+                        <!-- Contact Information (Email) -->
                         <div class="row mt-2 align-center">
                             <div class="col-lg-5">
                                 <div class="form-group">
-                                    <label class="form-label" for="inp_phone">Phone Number</label>
-                                    <span class="form-note">Specify the phone number here.</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="form-control-wrap">
-                                    <div class="form-icon form-icon-right">
-                                        <em class="icon ni ni-call"></em>
-                                    </div>
-                                    <input type="text" class="form-control" id="inp_phone" name="inp_phone"
-                                        placeholder="Enter Phone Number here..." value="{{ old('inp_phone') }}">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Role -->
-                        <div class="row mt-2 align-center">
-                            <div class="col-lg-5">
-                                <div class="form-group">
-                                    <label class="form-label" for="role">Role <b class="text-danger">*</b></label>
-                                    <span class="form-note">Select a role here.</span>
-                                </div>
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="form-control-wrap">
-                                    <div class="form-icon form-icon-right">
-                                        <em class="icon ni ni-user"></em>
-                                    </div>
-                                    <select class="form-control" id="role" name="role" required
-                                        onchange="filterPositionOptions()">
-                                        <option value="">Select role</option>
-                                        <option value="staff">Staff</option>
-                                        <option value="faculty">Faculty</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Position -->
-                        <div class="row mt-2 align-center">
-                            <div class="col-lg-5">
-                                <div class="form-group">
-                                    <label class="form-label" for="position">Position <b
+                                    <label class="form-label" for="contact_information">Email Address <b
                                             class="text-danger">*</b></label>
-                                    <span class="form-note">Select a Position here.</span>
+                                    <span class="form-note">Specify the contact email here.</span>
                                 </div>
                             </div>
                             <div class="col-lg-7">
                                 <div class="form-control-wrap">
-                                    <div class="form-icon form-icon-right">
-                                        <em class="icon ni ni-user"></em>
-                                    </div>
-                                    <select class="form-control" id="position" name="department_id" required>
-
-                                        <option value="">Select Position</option>
-                                        @foreach ($staffDepartments as $staff)
-                                            <option value="{{ $staff->department_id }}" class="staff-option">
-                                                {{ $staff->depart_name }}</option>
-                                        @endforeach
-                                        @foreach ($facultyDepartments as $faculty)
-                                            <option value="{{ $faculty->department_id }}" class="faculty-option">
-                                                {{ $faculty->depart_name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="email" class="form-control" id="contact_information"
+                                        name="contact_information" placeholder="Enter Email Address here..." required
+                                        value="{{ old('contact_information') }}">
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Employment Status -->
+                        <div class="row mt-2 align-center">
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label class="form-label" for="employment_status">Employment Status <b
+                                            class="text-danger">*</b></label>
+                                    <span class="form-note">Select employment status.</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <select class="form-control" id="employment_status" name="employment_status" required>
+                                    <option value="">Select Status</option>
+                                    @foreach ($employmentStatuses as $status)
+                                        <option value="{{ $status }}">{{ $status }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Job Title (Text Input) -->
+                        <div class="row mt-2 align-center">
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label class="form-label" for="job_title">Job Title <b
+                                            class="text-danger">*</b></label>
+                                    <span class="form-note">Specify the job title here.</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="form-control-wrap">
+                                    <input type="text" class="form-control" id="job_title" name="job_title"
+                                        placeholder="Enter Job Title here..." required value="{{ old('job_title') }}">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Department (Dropdown) -->
+                        <div class="row mt-2 align-center">
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label class="form-label" for="department">Department <b
+                                            class="text-danger">*</b></label>
+                                    <span class="form-note">Select the department here.</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <select class="form-control" id="department" name="department" required>
+                                    <option value="">Select Department</option>
+                                    @foreach ($departments as $department)
+                                        <option value="{{ $department->depart_name }}">{{ $department->depart_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <!-- Job Type -->
+                        <div class="row mt-2 align-center">
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label class="form-label" for="job_title">Job Type <b
+                                            class="text-danger">*</b></label>
+                                    <span class="form-note">Specify the job Type here.</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <select class="form-control" id="job_type" name="job_type" required>
+                                    <option value="">Select Job Type</option>
+                                    @foreach ($jobTypes as $type)
+                                        <option value="{{ $type }}">{{ $type }}</option>
+                                    @endforeach
+                                </select>
+
+                            </div>
+                        </div>
                         <!-- Submit Button -->
                         <div class="row mt-4">
                             <div class="col-lg-5"></div>
@@ -227,6 +245,8 @@
                             </div>
                         </div>
                     </form>
+
+
 
                     <script>
                         function filterPositionOptions() {

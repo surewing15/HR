@@ -122,7 +122,7 @@ class RankController extends Controller
 
         $employees = RankModel::with([
             'masterlist' => function ($q) {
-                $q->select('id', 'first_name', 'last_name', 'position_title', 'department');
+                $q->select('id', 'first_name', 'last_name', 'job_type', 'department');
             }
         ])
             ->whereHas('masterlist', function ($q) use ($query) {
@@ -137,7 +137,7 @@ class RankController extends Controller
                     'id' => $rank->masterlist->id,
                     'first_name' => $rank->masterlist->first_name,
                     'last_name' => $rank->masterlist->last_name,
-                    'position_title' => $rank->masterlist->position_title,
+                    'job_type' => $rank->masterlist->job_type,
                     'department' => $rank->masterlist->department
                 ];
             });
@@ -150,7 +150,7 @@ class RankController extends Controller
 
         $employees = MasterlistModel::where('first_name', 'LIKE', "%{$query}%")
             ->orWhere('last_name', 'LIKE', "%{$query}%")
-            ->select('id', 'first_name', 'last_name', 'middle_name', 'position_title', 'department')
+            ->select('id', 'first_name', 'last_name', 'middle_name', 'job_type', 'department')
             ->limit(10)
             ->get();
 

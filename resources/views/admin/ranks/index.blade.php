@@ -358,8 +358,8 @@
                                         '<div class="employee-name">' + fullName +
                                         '</div>' +
                                         '<div class="employee-details">' +
-                                        (value.position_title ? value
-                                            .position_title : 'No Position') +
+                                        (value.job_type ? value
+                                            .job_type : 'No Position') +
                                         ' • ' +
                                         (value.department ? value.department :
                                             'No Department') +

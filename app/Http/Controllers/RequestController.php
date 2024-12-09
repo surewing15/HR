@@ -14,7 +14,7 @@ class RequestController extends Controller
         $coe = RequestModel::all();
 
         // Return the view with employee data
-        return view('employee_theme.request.index', compact('coe'));
+        return view('employee.request.index', compact('coe'));
     }
 
 

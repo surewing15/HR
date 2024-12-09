@@ -52,16 +52,11 @@
                                 <th class="nk-tb-col"><span class="sub-text">#</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Full Name</span></th>
                                 <!-- Changed from First Name to Full Name -->
-                                <th class="nk-tb-col"><span class="sub-text">Gender</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Status</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Birthdate</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Position Title</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Contact Number</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Educational Attainment</span></th>
+                                <th class="nk-tb-col"><span class="sub-text">Middle Initial</span></th>
+                                <th class="nk-tb-col"><span class="sub-text">Contact Information</span></th>
+                                <th class="nk-tb-col"><span class="sub-text">Employment Status</span></th>
+                                <th class="nk-tb-col"><span class="sub-text">Job Title</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Department</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Salary</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Email</span></th>
-                                <th class="nk-tb-col"><span class="sub-text">Work Status</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Action</span></th>
                             </tr>
                         </thead>
@@ -71,288 +66,73 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $employee->first_name }} {{ $employee->middle_name }} {{ $employee->last_name }}
                                     </td>
-                                    <td>{{ $employee->gender }}</td>
-                                    <td>{{ $employee->status }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($employee->birthdate)->format('m/d/Y') }}</td>
-                                    <td>{{ $employee->position_title }}</td>
-                                    <td>{{ $employee->contact_number }}</td>
-                                    <td>{{ $employee->educational_attainment }}</td>
+                                    <td>{{ $employee->middle_initial }}</td>
+                                    <td>{{ $employee->contact_information }}</td>
+                                    <td>{{ $employee->employment_status }}</td>
+                                    <td>{{ $employee->job_title }}</td>
                                     <td>{{ $employee->department }}</td>
-                                    <td>{{ $employee->salary }}</td>
-                                    <td>{{ $employee->email }}</td>
-                                    <td>{{ $employee->work_status }}</td>
+
                                     <td>
-                                        <button type="button" class="btn btn-primary"
-                                            onclick="openEditModal({{ $employee->id }})">Edit</button>
-                                        <form action="{{ route('masterlist.destroy', $employee->id) }}" method="POST"
-                                            style="display: inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger"
-                                                onclick="return confirm('Are you sure you want to delete this employee?')">Delete</button>
-                                        </form>
+                                        <button type="button" class="btn btn-info btn-sm"
+                                            onclick="openViewModal({{ $employee->id }})">
+                                            View
+                                        </button>
                                     </td>
+
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </div>
 
-        <!-- Edit Modal -->
-
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-md">
+        <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <a href="#" class="close" data-dismiss="modal" aria-label="Close">
-                        <em class="icon ni ni-cross-sm"></em>
-                    </a>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="viewModalLabel">Employee Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Replace the existing modal-body div with this updated version -->
                     <div class="modal-body">
-                        <h1 class="nk-block-title page-title">Edit Employee</h1>
-                        <hr class="mt-2 mb-2">
-
-                        <form id="editEmployeeForm" method="POST">
-                            @csrf
-                            <input type="hidden" id="edit_employee_id" name="employee_id">
-                            <!-- First Name -->
-                            <div class="row mt-2 align-center">
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="form-label" for="edit_first_name">First Name <b
-                                                class="text-danger">*</b></label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="form-control-wrap">
-                                        <input type="text" class="form-control" id="edit_first_name" name="first_name"
-                                            required>
-                                    </div>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Basic Information</h6>
+                                <p><strong>Employee ID:</strong> <span id="view_employee_id"></span></p>
+                                <p><strong>Full Name:</strong> <span id="view_full_name"></span></p>
+                                <p><strong>Sex:</strong> <span id="view_sex"></span></p>
+                                <p><strong>Civil Status:</strong> <span id="view_civil_status"></span></p>
+                                <p><strong>Date of Birth:</strong> <span id="view_date_of_birth"></span></p>
+                                <p><strong>Place of Birth:</strong> <span id="view_place_of_birth"></span></p>
                             </div>
-
-                            <!-- Last Name -->
-                            <div class="row mt-2 align-center">
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="form-label" for="edit_last_name">Last Name <b
-                                                class="text-danger">*</b></label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="form-control-wrap">
-                                        <input type="text" class="form-control" id="edit_last_name" name="last_name"
-                                            required>
-                                    </div>
-                                </div>
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Employment Details</h6>
+                                <p><strong>Department:</strong> <span id="view_department"></span></p>
+                                <p><strong>Job Title:</strong> <span id="view_job_title"></span></p>
+                                <p><strong>Employment Status:</strong> <span id="view_employment_status"></span></p>
+                                <p><strong>Contact Info:</strong> <span id="view_contact_information"></span></p>
                             </div>
-
-                            <!-- Middle Name -->
-                            <div class="row mt-2 align-center">
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="form-label" for="edit_middle_name">Middle Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="form-control-wrap">
-                                        <input type="text" class="form-control" id="edit_middle_name"
-                                            name="middle_name">
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Physical Information</h6>
+                                <p><strong>Height:</strong> <span id="view_height"></span></p>
+                                <p><strong>Weight:</strong> <span id="view_weight"></span></p>
+                                <p><strong>Blood Type:</strong> <span id="view_blood_type"></span></p>
                             </div>
-
-                            <!-- Gender -->
-                            <div class="row mt-2 align-center">
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="form-label" for="edit_gender">Gender <b
-                                                class="text-danger">*</b></label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="form-control-wrap">
-                                        <select class="form-control" id="edit_gender" name="gender" required>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Government IDs</h6>
+                                <p><strong>GSIS:</strong> <span id="view_gsis_no"></span></p>
+                                <p><strong>Pag-IBIG:</strong> <span id="view_pagibig_no"></span></p>
+                                <p><strong>PhilHealth:</strong> <span id="view_philhealth_no"></span></p>
+                                <p><strong>SSS:</strong> <span id="view_sss_no"></span></p>
+                                <p><strong>TIN:</strong> <span id="view_tin_no"></span></p>
                             </div>
-
-                            <!-- Status -->
-                            <div class="row mt-2 align-center">
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="form-label" for="edit_status">Status <b
-                                                class="text-danger">*</b></label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="form-control-wrap">
-                                        <select class="form-control" id="edit_status" name="status" required>
-                                            <option value="single">Single</option>
-                                            <option value="married">Married</option>
-                                            <option value="separated">Separated</option>
-                                            <option value="widowed">Widowed</option>
-                                            <option value="divorced">Divorced</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Birthdate -->
-                            <div class="row mt-2 align-center">
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="form-label" for="edit_birthdate">Birthdate <b
-                                                class="text-danger">*</b></label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="form-control-wrap">
-                                        <input type="date" class="form-control" id="edit_birthdate" name="birthdate"
-                                            required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Position Title -->
-                            <div class="row mt-2 align-center">
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="form-label" for="edit_position_title">Position Title <b
-                                                class="text-danger">*</b></label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="form-control-wrap">
-                                        <select class="form-control" id="edit_position_title" name="position_title"
-                                            required>
-                                            <option value="">Select Position Title</option>
-                                            <option value="watchman">Administrative Aide</option>
-                                            <option value="watchman">Watchman</option>
-                                            <option value="librarian">Librarian</option>
-                                            <option value="maintenance">Maintenance</option>
-                                            <option value="professionals">Professionals</option>
-                                            <option value="architect">Architect</option>
-                                            <option value="office_staff">Office Staff</option>
-                                            <option value="utility">Utility</option>
-                                            <option value="driver">Driver</option>
-                                            <option value="instructor_i">Instructor I</option>
-                                            <option value="instructor_ii">Instructor II</option>
-                                            <option value="instructor_iii">Instructor III</option>
-                                            <option value="assistant_professor_i">Assistant Professor I</option>
-                                            <option value="assistant_professor_ii">Assistant Professor II</option>
-                                            <option value="assistant_professor_iii">Assistant Professor III</option>
-                                            <option value="assistant_professor_iv">Assistant Professor IV</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Contact Number -->
-                            <div class="row mt-2 align-center">
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="form-label" for="edit_contact_number">Contact Number <b
-                                                class="text-danger">*</b></label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="form-control-wrap">
-                                        <input type="tel" class="form-control" id="edit_contact_number"
-                                            name="contact_number" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Educational Attainment -->
-                            <div class="row mt-2 align-center">
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="form-label" for="edit_educational_attainment">Educational Attainment
-                                            <b class="text-danger">*</b></label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="form-control-wrap">
-                                        <select class="form-control" id="edit_educational_attainment"
-                                            name="educational_attainment" required>
-                                            <option value="">Select Educational Attainment</option>
-                                            <option value="high_school">High School</option>
-                                            <option value="associate_degree">Associate Degree</option>
-                                            <option value="bachelor_degree">Bachelor's Degree</option>
-                                            <option value="master_degree">Master's Degree</option>
-                                            <option value="doctorate_degree">Doctorate Degree</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Salary -->
-                            <div class="row mt-2 align-center">
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="form-label" for="edit_salary">Salary <b
-                                                class="text-danger">*</b></label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="form-control-wrap">
-                                        <input type="number" class="form-control" id="edit_salary" name="salary"
-                                            step="0.01" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Email -->
-                            <div class="row mt-2 align-center">
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="form-label" for="edit_email">Email <b
-                                                class="text-danger">*</b></label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="form-control-wrap">
-                                        <input type="email" class="form-control" id="edit_email" name="email"
-                                            required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Work Status -->
-                            <div class="row mt-2 align-center">
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="form-label" for="edit_work_status">Work Status <b
-                                                class="text-danger">*</b></label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="form-control-wrap">
-                                        <select class="form-control" id="edit_work_status" name="work_status" required>
-                                            <option value="">Select Work Status</option>
-                                            <option value="job_order">Job Order</option>
-                                            <option value="permanent">Permanent</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Submit Button -->
-
-                            <div class="row mt-4">
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary btn-block">
-                                        <em class="icon ni ni-save"></em>&ensp;
-                                        Save Changes
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -360,90 +140,61 @@
 
 
         <script>
-            function openEditModal(employeeId) {
-                // Clear previous error messages
-                $('.is-invalid').removeClass('is-invalid');
-                $('.invalid-feedback').remove();
-
-                // Make an AJAX request to get employee data
+            function openViewModal(employeeId) {
                 $.ajax({
-                    url: `/masterlist/${employeeId}/edit`,
+                    url: `/masterlist/${employeeId}`,
                     method: 'GET',
-                    success: function(response) {
-                        // Populate the form with employee data
-                        $('#edit_employee_id').val(employeeId);
-                        $('#edit_first_name').val(response.first_name);
-                        $('#edit_last_name').val(response.last_name);
-                        $('#edit_middle_name').val(response.middle_name);
-                        $('#edit_gender').val(response.gender);
-                        console.log('Status from response:', response.status);
-                        $('#edit_status').val(response.status).trigger('change');
-                        $('#edit_birthdate').val(response.birthdate);
-                        $('#edit_position_title').val(response.position_title);
-                        $('#edit_contact_number').val(response.contact_number);
-                        $('#edit_educational_attainment').val(response.educational_attainment);
-                        $('#edit_salary').val(response.salary);
-                        $('#edit_email').val(response.email);
-                        $('#edit_work_status').val(response.work_status);
-
-                        $('#editModal').modal('show');
-                    },
-                    error: function(xhr) {
-                        console.error('Error Response:', xhr.responseText);
-                        alert('Error fetching employee data');
-                    }
-                });
-            }
-
-            // Handle form submission
-            $('#editEmployeeForm').on('submit', function(e) {
-                e.preventDefault();
-
-                const employeeId = $('#edit_employee_id').val();
-                const formData = new FormData(this);
-
-                $.ajax({
-                    url: `/masterlist/${employeeId}/update`,
-                    method: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(response) {
-                        if (response.message) {
-                            alert(response.message);
-                            // Redirect to the masterlist index page
-                            window.location.href = '/masterlist';
+                        if (response.error) {
+                            alert(response.error);
+                            return;
                         }
+
+                        // Basic Information
+                        $('#view_full_name').text(
+                            `${response.first_name || ''} ${response.middle_initial || ''} ${response.last_name || ''}`
+                        );
+                        $('#view_employee_id').text(response.employee_id || 'N/A');
+
+                        // Employment Details
+                        $('#view_department').text(response.department || 'N/A');
+                        $('#view_job_title').text(response.job_title || 'N/A');
+                        $('#view_employment_status').text(response.employment_status || 'N/A');
+                        $('#view_contact_information').text(response.contact_information || 'N/A');
+                        $('#view_job_type').text(response.job_type || 'N/A');
+
+                        // Personal Details
+                        $('#view_sex').text(response.sex || 'N/A');
+                        $('#view_civil_status').text(response.civil_status || 'N/A');
+                        $('#view_date_of_birth').text(response.date_of_birth || 'N/A');
+                        $('#view_place_of_birth').text(response.place_of_birth || 'N/A');
+
+                        // Physical Information
+                        $('#view_height').text(response.height ? response.height + ' m' : 'N/A');
+                        $('#view_weight').text(response.weight ? response.weight + ' kg' : 'N/A');
+                        $('#view_blood_type').text(response.blood_type || 'N/A');
+
+                        // Government IDs
+                        $('#view_gsis_no').text(response.gsis_no || 'N/A');
+                        $('#view_pagibig_no').text(response.pagibig_no || 'N/A');
+                        $('#view_philhealth_no').text(response.philhealth_no || 'N/A');
+                        $('#view_sss_no').text(response.sss_no || 'N/A');
+                        $('#view_tin_no').text(response.tin_no || 'N/A');
+
+                        // Show the modal
+                        $('#viewModal').modal('show');
                     },
-                    error: function(xhr) {
-                        console.error('Error Response:', xhr.responseText);
-                        if (xhr.status === 422) {
-                            const errors = xhr.responseJSON.errors;
-                            Object.keys(errors).forEach(field => {
-                                const input = $(`#edit_${field}`);
-                                if (input.length) {
-                                    input.addClass('is-invalid');
-                                    input.after(
-                                        `<div class="invalid-feedback">${errors[field][0]}</div>`
-                                    );
-                                }
-                            });
-                        } else {
-                            alert('An error occurred while updating the employee');
-                        }
+                    error: function(xhr, status, error) {
+                        console.error('Error Status:', status);
+                        console.error('Error:', error);
+                        console.error('Response Text:', xhr.responseText);
+                        alert('Error fetching employee data. Please check the console for details.');
                     }
                 });
-            });
-
-            // Clear validation errors when modal is hidden
-            $('#editModal').on('hidden.bs.modal', function() {
-                $('.is-invalid').removeClass('is-invalid');
-                $('.invalid-feedback').remove();
-                $('#editEmployeeForm')[0].reset();
-            });
+            }
         </script>
     </div>
 

@@ -10,10 +10,10 @@ class StaffController extends Controller
     public function index()
     {
         // Retrieve only faculty members (job_type = 'faculty')
-        $faculty = MasterlistModel::where('job_type', 'staff')->get();
+        $facultys = MasterlistModel::where('job_type', 'staff')->get();
 
         // Pass the filtered data to the view
-        return view('admin.masterlist.faculty.index', compact('faculty'));
+        return view('admin.masterlist.faculty.index', compact('facultys'));
     }
     // public function permanent()
     // {
