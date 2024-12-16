@@ -17,11 +17,7 @@
 
 
             <!-- .nk-header-search bar -->
-            <div class="nk-header-search ms-3 ms-xl-0">
-                <em class="icon ni ni-search"></em>
-                <input type="text" class="form-control border-transparent form-focus-none" placeholder="Search">
-
-            </div>
+            
             <div class="nk-header-tools">
                 <ul class="nk-quick-nav">
                     <li class="dropdown user-dropdown">
@@ -75,10 +71,6 @@
                                     <li><a href="html/user-profile-setting.html"><em
                                                 class="icon ni ni-setting-alt"></em><span>Account Setting</span></a>
                                     </li>
-                                    <li><a href="html/user-profile-activity.html"><em
-                                                class="icon ni ni-activity-alt"></em><span>Login Activity</span></a>
-                                    </li>
-
                                 </ul>
 
                             </div>

@@ -11,6 +11,7 @@ class EducationalBackgroundModel extends Model
     public $timestamps = true; // or false if not needed
     protected $primaryKey = 'id';
     protected $fillable = [
+        'personal_informations_id',
         'level',
         'school_name',
         'degree_course',

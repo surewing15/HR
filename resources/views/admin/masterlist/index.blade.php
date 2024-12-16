@@ -52,11 +52,12 @@
                                 <th class="nk-tb-col"><span class="sub-text">#</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Full Name</span></th>
                                 <!-- Changed from First Name to Full Name -->
-                                <th class="nk-tb-col"><span class="sub-text">Middle Initial</span></th>
+                                <!-- <th class="nk-tb-col"><span class="sub-text">Middle Initial</span></th> -->
                                 <th class="nk-tb-col"><span class="sub-text">Contact Information</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Employment Status</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Job Title</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Department</span></th>
+                                <th class="nk-tb-col"><span class="sub-text">Job Type</span></th>
                                 <th class="nk-tb-col"><span class="sub-text">Action</span></th>
 
                             </tr>
@@ -67,19 +68,18 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $employee->first_name }} {{ $employee->middle_name }} {{ $employee->last_name }}
                                     </td>
-                                    <td>{{ $employee->middle_initial }}</td>
+                                    <!-- <td>{{ $employee->middle_initial }}</td> -->
                                     <td>{{ $employee->contact_information }}</td>
                                     <td>{{ $employee->employment_status }}</td>
                                     <td>{{ $employee->job_title }}</td>
-                                    <td>{{ $employee->department }}</td>
-
+                                    <td class="expanded-cell">{{ $employee->department }}</td>
+                                    <td class="expanded-cell">{{ $employee->job_type }}</td>
                                     <td>
                                         <button type="button" class="btn btn-info btn-sm"
-                                            onclick="openViewModal({{ $employee->id }})">
+                                            onclick="openViewModal('{{ $employee->id }}')">
                                             View
                                         </button>
                                     </td>
-
                                 </tr>
                             @endforeach
                         </tbody>
@@ -95,7 +95,6 @@
                         <h5 class="modal-title" id="viewModalLabel">Employee Details</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <!-- Replace the existing modal-body div with this updated version -->
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -131,8 +130,38 @@
                                 <p><strong>TIN:</strong> <span id="view_tin_no"></span></p>
                             </div>
                         </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Personal Information</h6>
+                                <p><strong>Citizenship:</strong> <span id="view_citizenship"></span></p>
+                                <p><strong>Religion:</strong> <span id="view_religion"></span></p>
+                                <p><strong>Residential Address:</strong> <span id="view_residential_address"></span></p>
+                                <p><strong>Permanent Address:</strong> <span id="view_permanent_address"></span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Family Background</h6>
+                                <p><strong>Spouse's Name:</strong> <span id="view_spouse_name"></span></p>
+                                <p><strong>Father's Name:</strong> <span id="view_father_name"></span></p>
+                                <p><strong>Mother's Name:</strong> <span id="view_mother_name"></span></p>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Educational Background</h6>
+                                <p><strong>Highest Degree:</strong> <span id="view_highest_degree"></span></p>
+                                <p><strong>School Graduated:</strong> <span id="view_school_graduated"></span></p>
+                                <p><strong>Year Graduated:</strong> <span id="view_year_graduated"></span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="mb-3">Other Details</h6>
+                                <p><strong>Special Skills:</strong> <span id="view_special_skills"></span></p>
+                                <p><strong>Languages Spoken:</strong> <span id="view_languages_spoken"></span></p>
+                                <p><strong>Hobbies:</strong> <span id="view_hobbies"></span></p>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Files</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -184,6 +213,27 @@
                         $('#view_philhealth_no').text(response.philhealth_no || 'N/A');
                         $('#view_sss_no').text(response.sss_no || 'N/A');
                         $('#view_tin_no').text(response.tin_no || 'N/A');
+
+                        // Personal Information (Added)
+                        $('#view_citizenship').text(response.citizenship || 'N/A');
+                        $('#view_religion').text(response.religion || 'N/A');
+                        $('#view_residential_address').text(response.residential_address || 'N/A');
+                        $('#view_permanent_address').text(response.permanent_address || 'N/A');
+
+                        // Family Background (Added)
+                        $('#view_spouse_name').text(response.spouse_name || 'N/A');
+                        $('#view_father_name').text(response.father_name || 'N/A');
+                        $('#view_mother_name').text(response.mother_name || 'N/A');
+
+                        // Educational Background (Added)
+                        $('#view_highest_degree').text(response.highest_degree || 'N/A');
+                        $('#view_school_graduated').text(response.school_graduated || 'N/A');
+                        $('#view_year_graduated').text(response.year_graduated || 'N/A');
+
+                        // Other Details (Added)
+                        $('#view_special_skills').text(response.special_skills || 'N/A');
+                        $('#view_languages_spoken').text(response.languages_spoken || 'N/A');
+                        $('#view_hobbies').text(response.hobbies || 'N/A');
 
                         // Show the modal
                         $('#viewModal').modal('show');

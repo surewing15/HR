@@ -125,46 +125,81 @@ class EmployeeController extends Controller
     public function show($id)
     {
         try {
-            // First get the masterlist record
+            // Fetch Masterlist record
             $masterlistEmployee = MasterlistModel::findOrFail($id);
 
-            // Then get the matching personal information using employee_id
+            // Fetch Personal Information record
             $personalInfo = DB::table('personal_informations')
                 ->where('employee_id', $masterlistEmployee->employee_id)
                 ->first();
 
-            // Combine the data
+            // Combine all necessary fields
             $employeeData = [
-                // Masterlist data
+                // Masterlist fields
                 'employee_id' => $masterlistEmployee->employee_id,
                 'first_name' => $masterlistEmployee->first_name,
                 'last_name' => $masterlistEmployee->last_name,
-                'middle_initial' => $masterlistEmployee->middle_initial,
-                'contact_information' => $masterlistEmployee->contact_information,
-                'employment_status' => $masterlistEmployee->employment_status,
-                'job_title' => $masterlistEmployee->job_title,
-                'department' => $masterlistEmployee->department,
-                'job_type' => $masterlistEmployee->job_type,
+                'middle_initial' => $masterlistEmployee->middle_initial ?? 'N/A',
+                'contact_information' => $masterlistEmployee->contact_information ?? 'N/A',
+                'employment_status' => $masterlistEmployee->employment_status ?? 'N/A',
+                'job_title' => $masterlistEmployee->job_title ?? 'N/A',
+                'department' => $masterlistEmployee->department ?? 'N/A',
+                'job_type' => $masterlistEmployee->job_type ?? 'N/A',
 
-                // Personal information (if available)
-                'date_of_birth' => $personalInfo ? $personalInfo->date_of_birth : null,
-                'place_of_birth' => $personalInfo ? $personalInfo->place_of_birth : null,
-                'sex' => $personalInfo ? $personalInfo->sex : null,
-                'civil_status' => $personalInfo ? $personalInfo->civil_status : null,
-                'height' => $personalInfo ? $personalInfo->height : null,
-                'weight' => $personalInfo ? $personalInfo->weight : null,
-                'blood_type' => $personalInfo ? $personalInfo->blood_type : null,
-                'gsis_no' => $personalInfo ? $personalInfo->gsis_no : null,
-                'pagibig_no' => $personalInfo ? $personalInfo->pagibig_no : null,
-                'philhealth_no' => $personalInfo ? $personalInfo->philhealth_no : null,
-                'sss_no' => $personalInfo ? $personalInfo->sss_no : null,
-                'tin_no' => $personalInfo ? $personalInfo->tin_no : null
+                // Combine Family Names
+                'spouse_name' => trim(
+                    ($personalInfo->spouse_first_name ?? '') . ' ' .
+                    ($personalInfo->spouse_middle_name ?? '') . ' ' .
+                    ($personalInfo->spouse_surname ?? '') . ' ' .
+                    ($personalInfo->spouse_name_extension ?? '')
+                ) ?: 'N/A',
+
+                'father_name' => trim(
+                    ($personalInfo->father_first_name ?? '') . ' ' .
+                    ($personalInfo->father_middle_name ?? '') . ' ' .
+                    ($personalInfo->father_surname ?? '') . ' ' .
+                    ($personalInfo->father_name_extension ?? '')
+                ) ?: 'N/A',
+
+                'mother_name' => trim(
+                    ($personalInfo->mother_first_name ?? '') . ' ' .
+                    ($personalInfo->mother_middle_name ?? '') . ' ' .
+                    ($personalInfo->mother_surname ?? '')
+                ) ?: 'N/A',
+
+                // Personal Information
+                'citizenship' => $personalInfo->citizenship ?? 'N/A',
+                'religion' => $personalInfo->religion ?? 'N/A',
+                'residential_address' => $personalInfo->residential_address ?? 'N/A',
+                'permanent_address' => $personalInfo->permanent_address ?? 'N/A',
+                'height' => $personalInfo->height ? $personalInfo->height . ' m' : 'N/A',
+                'weight' => $personalInfo->weight ? $personalInfo->weight . ' kg' : 'N/A',
+                'blood_type' => $personalInfo->blood_type ?? 'N/A',
+
+                // Government IDs
+                'gsis_no' => $personalInfo->gsis_no ?? 'N/A',
+                'pagibig_no' => $personalInfo->pagibig_no ?? 'N/A',
+                'philhealth_no' => $personalInfo->philhealth_no ?? 'N/A',
+                'sss_no' => $personalInfo->sss_no ?? 'N/A',
+                'tin_no' => $personalInfo->tin_no ?? 'N/A',
+
+                // Educational Background
+                'highest_degree' => $personalInfo->highest_degree ?? 'N/A',
+                'school_graduated' => $personalInfo->school_graduated ?? 'N/A',
+                'year_graduated' => $personalInfo->year_graduated ?? 'N/A',
+
+                // Other Details
+                'special_skills' => $personalInfo->special_skills ?? 'N/A',
+                'languages_spoken' => $personalInfo->languages_spoken ?? 'N/A',
+                'hobbies' => $personalInfo->hobbies ?? 'N/A',
             ];
 
             return response()->json($employeeData);
         } catch (\Exception $e) {
-            \Log::error('Error in show method: ' . $e->getMessage());
-            return response()->json(['error' => 'Error fetching employee data: ' . $e->getMessage()], 500);
+             log::error('Error fetching employee data: ' . $e->getMessage());
+    return response()->json(['error' => 'Unable to fetch employee data'], 500);
+}
         }
     }
+
 }

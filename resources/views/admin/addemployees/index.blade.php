@@ -30,7 +30,6 @@
                                     <th>Email Address</th>
                                     <th>Job Title</th>
                                     <th>Department/Designation</th>
-                                    <th width="100" class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,10 +41,6 @@
                                         <td>{{ $masterlist->contact_information }}</td>
                                         <td>{{ $masterlist->job_title }}</td>
                                         <td>{{ $masterlist->department }}</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-block btn-light bg-white text-dark">
-                                                <em class="icon ni ni-edit"></em>
-                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -11,6 +11,7 @@ use App\Models\WorkExperienceModel;
 use App\Models\VoluntaryWorkModel;
 use App\Models\LearningDevelopmentModel;
 use App\Models\OtherInformationModel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Exception;
@@ -96,7 +97,7 @@ class PersonalDataSheetController extends Controller
     {
         try {
             $personalInfoData = [
-                'employee_id' => 'EMP001',
+                'employee_id' => auth()->guard('employee')->user()->employee_id,
                 'surname' => $request->surname,
                 'first_name' => $request->first_name,
                 'middle_name' => $request->middle_name,

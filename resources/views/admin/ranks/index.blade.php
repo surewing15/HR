@@ -128,7 +128,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>name</th>
+                                <th>Full Name</th>
                                 <th>Field</th>
                                 <th>Current Qualification</th>
                                 <th>Current Rank (A.Y.)</th>
@@ -164,9 +164,9 @@
 
     <!-- Button to Open the Modal -->
     <!-- Button to Trigger Modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registrationModal">
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registrationModal">
         View Data
-    </button>
+    </button> -->
 
     <!-- Modal Structure -->
     <div class="modal fade" id="registrationModal" tabindex="-1" role="dialog" aria-hidden="true">

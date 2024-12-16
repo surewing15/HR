@@ -28,7 +28,7 @@
 
                     </li>
                     <li class="nk-menu-item">
-                        <a href="/emp" class="nk-menu-link">
+                        <a href="/emp/dashboard" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
                             <span class="nk-menu-text">Dashboard</span>
                         </a>
@@ -46,12 +46,12 @@
                     <li class="nk-menu-item">
                         <a href="/files" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-files-fill"></em></span>
-                            <span class="nk-menu-text">Files</span>
+                            <span class="nk-menu-text">Attachment Files</span>
                         </a>
                     </li>
 
                     <li class="nk-menu-item has-sub">
-                        <a href="/request/coe" class="nk-menu-link">
+                        <a href="/request" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-file-text"></em></span>
                             <span class="nk-menu-text">Request COE</span>
                         </a>

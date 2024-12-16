@@ -99,17 +99,41 @@
                     </li>
 
                     <li class="nk-menu-item">
-                        <a href="/request" class="nk-menu-link">
+                        <a href="/others/request" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-file"></em></span>
                             <span class="nk-menu-text">COE Request</span>
                         </a>
                     </li>
 
-                    <li class="nk-menu-item">
-                        <a href="/reports" class="nk-menu-link">
+                    <li class="nk-menu-item has-sub">
+                        <a href="#" class="nk-menu-link nk-menu-toggle">
                             <span class="nk-menu-icon"><em class="icon ni ni-report"></em></span>
                             <span class="nk-menu-text">Reports</span>
                         </a>
+                        <ul class="nk-menu-sub">
+
+                            <li class="nk-menu-item">
+                                <a href="/contractuals" class="nk-menu-link">
+                                    <span class="nk-menu-text">Casual/Contractual Reports</span>
+                                </a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="/cosreps" class="nk-menu-link">
+                                    <span class="nk-menu-text">JO/COS/MOA Reports</span>
+                                </a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="/RankingRecord" class="nk-menu-link">
+                                    <span class="nk-menu-text">Ranking Report</span>
+                                </a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="/record/daily" class="nk-menu-link">
+                                    <span class="nk-menu-text">Daily Reports</span>
+                                </a>
+                            </li>
+
+                        </ul>
                     </li>
 
 

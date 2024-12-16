@@ -37,7 +37,7 @@
             Swal.fire({
                 icon: 'success',
                 title: 'Saved Successfully',
-                text: '{{ session('success') }}',
+                // text: '{{ session('success') }}',
                 confirmButtonText: 'OK'
             });
         </script>

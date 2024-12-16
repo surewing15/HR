@@ -14,7 +14,7 @@
                     <img class="logo-dark logo-img" src="/logo.png" srcset="/logo.png 2x" alt="logo-dark">
                 </a>
             </div>
-            
+
             <div class="nk-header-tools">
                 <ul class="nk-quick-nav">
                     <li class="dropdown user-dropdown">
@@ -24,18 +24,16 @@
                                     <em class="icon ni ni-user-alt"></em>
                                 </div>
                                 <div class="user-info d-none d-xl-block">
-                                    
-                                    <div class="user-status user-status-active"
-                                        style="text-transform: uppercase; color: #c38522">Employee</div>
-                                    <div class="user-name dropdown-indicator" style="text-transform: uppercase">
-                                        {{ Auth::user()->name }}
-                                      
-                                    </div>
-                                  
+
+                                <div class="user-status user-status-active" style="text-transform: uppercase; color: #c38522">Employee</div>
+                                <div class="user-name dropdown-indicator" style="text-transform: uppercase">
+                                    {{-- {{ Auth::user()->name }} --}}
                                 </div>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-end">
+
+                                </div>
+                                </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-md dropdown-menu-end">
                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                 <div class="user-card">
                                     <div class="user-avatar">
@@ -49,36 +47,35 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    
-                                    <li>
-                                        
+
+                                    {{-- <li>
                                         <a href="{{ route('profile.edit') }}">
                                             <em class="icon ni ni-user-alt"></em>
                                             <span>{{ __('View Profile') }}</span>
                                         </a>
-                                    </li>
-                                    
+                                    </li> --}}
 
-                            
-                                <li><a href="html/user-profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
-                                <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
-                               
+
+
+                                    <li><a href="html/user-profile-setting.html"><em
+                                                class="icon ni ni-setting-alt"></em><span>Account Setting</span></a>
+                                    </li>
                                 </ul>
-                               
-                            </div>
+
+
                             <div class="dropdown-inner">
-                                                <ul class="link-list">
-                                                    <form method="POST" action="{{ route('logout') }}">
-                                                        @csrf
-                            
-                                                        <x-dropdown-link :href="route('logout')"
-                                                                onclick="event.preventDefault();
+                                <ul class="link-list">
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
                                                                             this.closest('form').submit();">
-                                                            {{ __('Log Out') }}
-                                                        </x-dropdown-link>
-                                                    </form>
-                                                </ul>
-                                            </div>
+                                            {{ __('Log Out') }}
+                                        </x-dropdown-link>
+                                    </form>
+                                </ul>
+                            </div>
                         </div>
                     </li>
                 </ul>

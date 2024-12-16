@@ -12,6 +12,7 @@ class EmployeeModel extends Model
     protected $table = 'add_employee';
     protected $primaryKey = 'employee_id ';
     protected $fillable = [
+
         'emp_first_name',
         'emp_last_name',
         'emp_email',
